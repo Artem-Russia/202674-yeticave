@@ -2,6 +2,7 @@
 
 * Студент: [Артём Дорин](https://up.htmlacademy.ru/php/3/user/202674).
 * Наставник: [Сергей Печенов](https://htmlacademy.ru/profile/id447337)
+
 ---
 
 **Обратите внимание на файл:**
