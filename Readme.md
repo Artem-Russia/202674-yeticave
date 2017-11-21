@@ -1,6 +1,6 @@
 # Личный проект «YetiCave» 
 
-* Студент: [Артём Дорин](https://up.htmlacademy.ru/php/3/user/202674)
+* Студент: [Артём Дорин](https://up.htmlacademy.ru/php/3/user/202674).
 * Наставник: [Сергей Печенов](https://htmlacademy.ru/profile/id447337)
 
 ---
