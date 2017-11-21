@@ -45,10 +45,10 @@ $lot_time_remaining = gmdate("H:i:s", $tomorrow - $now);
 
 <?if ($is_auth==true):?>
     <div class="user-menu__image">
-            <img src="<?=$user_avatar?>" width="40" height="40" alt="Пользователь">
+        <img src="<?=$user_avatar?>" width="40" height="40" alt="Пользователь">
     </div>
     <div class="user-menu__logged">
-            <p><?=$user_name?></p>
+        <p><?=$user_name?></p>
     </div>
 <?else:?>
     <ul class="user-menu__list">
