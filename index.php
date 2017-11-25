@@ -19,17 +19,23 @@ $now = strtotime('now');
 // далее нужно вычислить оставшееся время до начала следующих суток и записать его в переменную $lot_time_remaining
 $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
 
-$category=["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+$categories=[
+    ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"],
+    ["promo__item promo__item--boards","promo__item promo__item--attachment","promo__item promo__item--boots",
+    "promo__item promo__item--clothing","promo__item promo__item--tools","promo__item promo__item--other"]
+    ];
 
-$lot[0]=0;
-$lot[1]=array("name"=>"2014 Rossignol District Snowboard","category"=>"Доски и лыжи","price"=>"10999","url"=>"img/lot-1.jpg");
-$lot[2]=array("name"=>"DC Ply Mens 2016/2017 Snowboard","category"=>"Доски и лыжи","price"=>"159999","url"=>"img/lot-2.jpg");
-$lot[3]=array("name"=>"Крепления Union Contact Pro 2015 года размер L/XL","category"=>"Крепления","price"=>"8000","url"=>"img/lot-3.jpg");
-$lot[4]=array("name"=>"Ботинки для сноуборда DC Mutiny Charocal","category"=>"Ботинки","price"=>"10999","url"=>"img/lot-4.jpg");
-$lot[5]=array("name"=>"Куртка для сноуборда DC Mutiny Charocal","category"=>"Одежда","price"=>"7500","url"=>"img/lot-5.jpg");
-$lot[6]=array("name"=>"Маска Oakley Canopy","category"=>"Разное","price"=>"5400","url"=>"img/lot-6.jpg");
+$lots=[
+    ["name"=>"2014 Rossignol District Snowboard","category"=>"Доски и лыжи","price"=>10999,"url"=>"img/lot-1.jpg"],
+    ["name"=>"DC Ply Mens 2016/2017 Snowboard","category"=>"Доски и лыжи","price"=>159999,"url"=>"img/lot-2.jpg"],
+    ["name"=>"Крепления Union Contact Pro 2015 года размер L/XL","category"=>"Крепления","price"=>8000,"url"=>"img/lot-3.jpg"],
+    ["name"=>"Ботинки для сноуборда DC Mutiny Charocal","category"=>"Ботинки","price"=>10999,"url"=>"img/lot-4.jpg"],
+    ["name"=>"Куртка для сноуборда DC Mutiny Charocal","category"=>"Одежда","price"=>"7500","url"=>"img/lot-5.jpg"],
+    ["name"=>"Маска Oakley Canopy","category"=>"Разное","price"=>"5400","url"=>"img/lot-6.jpg"]
+    ];
 
-$amount_of_lots=count($category);
+$amount_of_lots=count($lots);
+$amount_of_categories=count($categories[0]);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -79,25 +85,12 @@ $amount_of_lots=count($category);
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
+
         <ul class="promo__list">
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="all-lots.html"><?=$category[0]?></a>
-            </li>
-            <li class="promo__item promo__item--attachment">
-                <a class="promo__link" href="all-lots.html"><?=$category[1]?></a>
-            </li>
-            <li class="promo__item promo__item--boots">
-                <a class="promo__link" href="all-lots.html"><?=$category[2]?></a>
-            </li>
-            <li class="promo__item promo__item--clothing">
-                <a class="promo__link" href="all-lots.html"><?=$category[3]?></a>
-            </li>
-            <li class="promo__item promo__item--tools">
-                <a class="promo__link" href="all-lots.html"><?=$category[4]?></a>
-            </li>
-            <li class="promo__item promo__item--other">
-                <a class="promo__link" href="all-lots.html"><?=$category[5]?></a>
-            </li>
+            <? $a=0; while($a<$amount_of_categories){?>
+                <li class="<? echo $categories[1][$a];?>">
+                    <a class="promo__link" href="all-lots.html"><? echo $categories[0][$a];?></a>
+                </li><? $a++;}; ?>
         </ul>
     </section>
     <section class="lots">
@@ -106,20 +99,19 @@ $amount_of_lots=count($category);
         </div>
         <ul class="lots__list">
             <? $current_num=0;
-                while($current_num<$amount_of_lots){
-                    $current_num++;?>
+                while($current_num<$amount_of_lots){?>
                         <li class="lots__item lot">
                             <div class="lot__image">
-                                <img src="<?=$lot[$current_num]["url"];?>" width="350" height="260" alt="<?=$lot[$current_num]["name"];?>">
+                                <img src="<?=$lots[$current_num]["url"];?>" width="350" height="260" alt="<?=$lots[$current_num]["name"];?>">
                             </div>
                             <div class="lot__info">
-                                <span class="lot__category"><?=$lot[$current_num]["category"];?></span>
-                                <h3 class="lot__title"><a class="text-link" href="lot.html"><?=$lot[$current_num]["name"];?></a></h3>
+                                <span class="lot__category"><?=$lots[$current_num]["category"];?></span>
+                                <h3 class="lot__title"><a class="text-link" href="lot.html"><?=$lots[$current_num]["name"];?></a></h3>
 
                                 <div class="lot__state">
                                     <div class="lot__rate">
                                         <span class="lot__amount">Стартовая цена</span>
-                                        <span class="lot__cost"><?=$lot[$current_num]["price"];?><b class="rub">р</b></span>
+                                        <span class="lot__cost"><?=$lots[$current_num]["price"];?><b class="rub">р</b></span>
                                     </div>
                                     <div class="lot__timer timer">
                                         <?=$lot_time_remaining;?>
@@ -128,7 +120,7 @@ $amount_of_lots=count($category);
 
                             </div>
                         </li>
-            <?};?>
+            <?$current_num++;};?>
         </ul>
     </section>
 </main>
