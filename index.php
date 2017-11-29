@@ -20,10 +20,13 @@ $now = strtotime('now');
 $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
 
 $categories=[
-    ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"],
-    ["promo__item promo__item--boards","promo__item promo__item--attachment","promo__item promo__item--boots",
-    "promo__item promo__item--clothing","promo__item promo__item--tools","promo__item promo__item--other"]
-    ];
+    "Доски и лыжи"=>"promo__item promo__item--boards",
+    "Крепления"=>"promo__item promo__item--attachment",
+    "Ботинки"=>"promo__item promo__item--boots",
+    "Одежда"=>"promo__item promo__item--clothing",
+    "Инструменты"=>"promo__item promo__item--tools",
+    "Разное"=>"promo__item promo__item--other"
+        ];
 
 $lots=[
     ["name"=>"2014 Rossignol District Snowboard","category"=>"Доски и лыжи","price"=>10999,"url"=>"img/lot-1.jpg"],
@@ -32,7 +35,7 @@ $lots=[
     ["name"=>"Ботинки для сноуборда DC Mutiny Charocal","category"=>"Ботинки","price"=>10999,"url"=>"img/lot-4.jpg"],
     ["name"=>"Куртка для сноуборда DC Mutiny Charocal","category"=>"Одежда","price"=>"7500","url"=>"img/lot-5.jpg"],
     ["name"=>"Маска Oakley Canopy","category"=>"Разное","price"=>"5400","url"=>"img/lot-6.jpg"]
-    ];
+        ];
 
 $amount_of_lots=count($lots);
 $amount_of_categories=count($categories[0]);
@@ -87,10 +90,11 @@ $amount_of_categories=count($categories[0]);
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
 
         <ul class="promo__list">
-            <? $a=0; while($a<$amount_of_categories){?>
-                <li class="<? echo $categories[1][$a];?>">
-                    <a class="promo__link" href="all-lots.html"><? echo $categories[0][$a];?></a>
-                </li><? $a++;}; ?>
+            <? foreach($categories as $category => $class):?>
+                <li class="<?=$class;?>">
+                    <a class="promo__link" href="all-lots.html"><?=$category;?></a>
+                </li>
+            <? endforeach; ?>
         </ul>
     </section>
     <section class="lots">
@@ -98,29 +102,28 @@ $amount_of_categories=count($categories[0]);
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <? $current_num=0;
-                while($current_num<$amount_of_lots){?>
+            <? foreach($lots as $key => $lot): ?>
                         <li class="lots__item lot">
                             <div class="lot__image">
-                                <img src="<?=$lots[$current_num]["url"];?>" width="350" height="260" alt="<?=$lots[$current_num]["name"];?>">
+                                <img src="<?=$lot["url"];?>" width="350" height="260" alt="<?=$lot["name"]?>">
                             </div>
                             <div class="lot__info">
-                                <span class="lot__category"><?=$lots[$current_num]["category"];?></span>
-                                <h3 class="lot__title"><a class="text-link" href="lot.html"><?=$lots[$current_num]["name"];?></a></h3>
+                                <span class="lot__category"><?=$lot["category"];?></span>
+                                <h3 class="lot__title"><a class="text-link" href="lot.html"><?=$lot["name"]?></a></h3>
 
                                 <div class="lot__state">
                                     <div class="lot__rate">
                                         <span class="lot__amount">Стартовая цена</span>
-                                        <span class="lot__cost"><?=$lots[$current_num]["price"];?><b class="rub">р</b></span>
+                                        <span class="lot__cost"><?=$lot["price"]?><b class="rub">р</b></span>
                                     </div>
                                     <div class="lot__timer timer">
-                                        <?=$lot_time_remaining;?>
+                                        <?=$lot_time_remaining?>
                                     </div>
                                 </div>
 
                             </div>
                         </li>
-            <?$current_num++;};?>
+            <? endforeach; ?>
         </ul>
     </section>
 </main>
