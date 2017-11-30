@@ -8,7 +8,7 @@ $bets = [
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
 function lot_time($arg_1){
-    (int)$time_passed=time()-$arg_1;
+    $time_passed=(int)(time()-$arg_1);
     if($time_passed>=86400){
         $time_passed_date=date("d.m.y", $arg_1);
         $time_passed_m_h=date("H.i",$arg_1);
