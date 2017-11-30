@@ -102,7 +102,7 @@ $amount_of_categories=count($categories[0]);
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <? foreach($lots as $key => $lot): ?>
+            <? foreach($lots as  $lot): ?>
                         <li class="lots__item lot">
                             <div class="lot__image">
                                 <img src="<?=$lot["url"];?>" width="350" height="260" alt="<?=$lot["name"]?>">
