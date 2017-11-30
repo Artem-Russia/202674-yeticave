@@ -20,12 +20,12 @@ $now = strtotime('now');
 $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
 
 $categories=[
-    "Доски и лыжи"=>"promo__item promo__item--boards",
-    "Крепления"=>"promo__item promo__item--attachment",
-    "Ботинки"=>"promo__item promo__item--boots",
-    "Одежда"=>"promo__item promo__item--clothing",
-    "Инструменты"=>"promo__item promo__item--tools",
-    "Разное"=>"promo__item promo__item--other"
+    ["name"=>"Доски и лыжи","class"=>"promo__item promo__item--boards"],
+    ["name"=>"Крепления","class"=>"promo__item promo__item--attachment"],
+    ["name"=>"Ботинки","class"=>"promo__item promo__item--boots"],
+    ["name"=>"Одежда","class"=>"promo__item promo__item--clothing"],
+    ["name"=>"Инструменты","class"=>"promo__item promo__item--tools"],
+    ["name"=>"Разное","class"=>"promo__item promo__item--other"]
         ];
 
 $lots=[
@@ -37,8 +37,7 @@ $lots=[
     ["name"=>"Маска Oakley Canopy","category"=>"Разное","price"=>"5400","url"=>"img/lot-6.jpg"]
         ];
 
-$amount_of_lots=count($lots);
-$amount_of_categories=count($categories[0]);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -90,9 +89,9 @@ $amount_of_categories=count($categories[0]);
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
 
         <ul class="promo__list">
-            <? foreach($categories as $category => $class):?>
-                <li class="<?=$class;?>">
-                    <a class="promo__link" href="all-lots.html"><?=$category;?></a>
+            <? foreach($categories as $category):?>
+                <li class="<?=$category["class"];?>">
+                    <a class="promo__link" href="all-lots.html"><?=$category["name"];?></a>
                 </li>
             <? endforeach; ?>
         </ul>
