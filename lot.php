@@ -7,7 +7,7 @@ $bets = [
     ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
-function lot_time($arg_1){
+function bet_time($arg_1){
     $time_passed=(int)(time()-$arg_1);
     if($time_passed>=86400){
         $time_passed_date=date("d.m.y", $arg_1);
@@ -130,7 +130,7 @@ function lot_time($arg_1){
                             <tr class="history__item">
                                 <td class="history__name"><?=$bet['name'];?></td>
                                 <td class="history__price"><?=$bet['price'];?> р</td>
-                                <td class="history__time"><?=lot_time($bet['ts']);?></td>
+                                <td class="history__time"><?=bet_time($bet['ts']);?></td>
                             </tr>
                         </table>
                     <? endforeach;?>
