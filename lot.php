@@ -8,25 +8,21 @@ $bets = [
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
 function lot_time($arg_1){
-    if((time()-$arg_1)>=86400)
-    {
-        echo date("d.m.y.", $arg_1);
-        echo " в ";
-        echo date("H.i",$arg_1);
-    }
-    else
-    {
-        if((time()-$arg_1)<3600)
-        {
-            echo (int)((time()-$arg_1)/60);
-            echo " минут назад";
-        }
-        else
-        {
-            echo (int)((time()-$arg_1)/3600);
-            echo " часов назад";
-        }
-    }
+    (int)$time_passed=time()-$arg_1;
+    if($time_passed>=86400):
+        $time_passed_date=date("d.m.y.", $arg_1);
+        $time_passed_m_h=date("H.i",$arg_1);
+        return "$time_passed_date в $$time_passed_m_h";
+    else:
+        if($time_passed<3600):
+            $time_passed_m=$time_passed/60;
+            return "$time_passed_m минут назад";
+
+        else:
+            $time_passed_h=$time_passed/3600;
+            return "$time_passed_h часов назад";
+        endif;
+    endif;
 };
 ?>
 
