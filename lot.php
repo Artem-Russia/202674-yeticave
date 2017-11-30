@@ -7,6 +7,27 @@ $bets = [
     ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
+function lot_time($arg_1){
+    if((time()-$arg_1)>=86400)
+    {
+        echo date("d.m.y.", $arg_1);
+        echo " в ";
+        echo date("H.i",$arg_1);
+    }
+    else
+    {
+        if((time()-$arg_1)<3600)
+        {
+            echo (int)((time()-$arg_1)/60);
+            echo " минут назад";
+        }
+        else
+        {
+            echo (int)((time()-$arg_1)/3600);
+            echo " часов назад";
+        }
+    }
+};
 ?>
 
 <!DOCTYPE html>
@@ -109,14 +130,15 @@ $bets = [
                 </div>
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
-                    <!-- заполните эту таблицу данными из массива $bets-->
-                    <table class="history__list">
-                        <tr class="history__item">
-                            <td class="history__name"><!-- имя автора--></td>
-                            <td class="history__price"><!-- цена--> р</td>
-                            <td class="history__time"><!-- дата в человеческом формате--></td>
-                        </tr>
-                    </table>
+                    <?foreach($bets as $key1 => $bet):?>
+                        <table class="history__list">
+                            <tr class="history__item">
+                                <td class="history__name"><?=$bet['name'];?></td>
+                                <td class="history__price"><?=$bet['price'];?> р</td>
+                                <td class="history__time"><?=lot_time($bet['ts']);?></td>
+                            </tr>
+                        </table>
+                    <? endforeach;?>
                 </div>
             </div>
         </div>
