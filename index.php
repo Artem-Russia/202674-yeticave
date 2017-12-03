@@ -1,8 +1,8 @@
 <?php
 
 $is_auth = (bool) rand(0, 1);
-
-$user_name = 'Константин';
+$title = "Главная";
+$user_name = "Константин";
 $user_avatar = 'img/user.jpg';
 
 // устанавливаем часовой пояс в Московское время
@@ -39,17 +39,10 @@ $lots=[
 ];
 
 require_once 'functions.php';
-require_once 'config.php';
 
-if ($enable){
-    $page_content = renderTemplate('templates/index.php',["categories"=>$categories,"lots"=>$lots]);
-}
-else {
-    $error_msg = "Сайт на техническом обслуживании";
-    echo $error_msg;
-}
+$page_content = renderTemplate('templates/index.php',["categories"=>$categories,"lots"=>$lots, "lot_time_remaining"=>$lot_time_remaining]);
+$layout_content = renderTemplate('templates/layout.php',["content"=>$page_content, "title"=>$title, "user_name"=>$user_name, "user_avatar"=>$user_avatar, "is_auth"=>$is_auth]);
 
-$layout_content = renderTemplate('templates/layout.php',["content"=>$page_content]);
 print($layout_content);
 
 ?>

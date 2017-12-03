@@ -8,9 +8,9 @@ function renderTemplate($template, $params){
         extract($params,EXTR_OVERWRITE);
         require_once "$template";
         $html = ob_get_clean();
-        return ($html);
+        return $html;
     }
     else{
-        return("");
+        return "";
     }
 };
